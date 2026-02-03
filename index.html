@@ -1,136 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Uji Perjuangan Cinta</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #1a1a1a;
+            font-family: 'sans-serif';
+            overflow: hidden; /* Biar gak bisa di-scroll saat tombol lari */
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        .wrapper {
+            margin-top: 50px;
+            width: 100%;
+            height: 200px; /* Area bermain tombol */
+            position: relative;
+        }
+
+        #btnSayang {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: 0.2s ease;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 <body>
-    <!-- Menu Bar -->
-    <div class="container-menu">
-        <ul class="list-menu">
-            <li><a href="#" class="a-nav">Home</a></li>
-            <li><a href="about.html" class="a-nav">About</a></li>
-            <li><a href="contact.html" class="a-nav">Contact</a></li>
-        </ul>
 
-        <div class="log-in">
-            <a href="login.html" class="a-login">Log In</a>
-        </div>
-        
-        <div class="sign-up">
-            <a href="sign.html" class="a-signup">Sign Up</a>
+    <div class="container">
+        <h2 id="judul">Kamu Sayang Aku Nggak?</h2>
+        <div class="wrapper" id="areaMain">
+            <button id="btnSayang">Sayang Banget!</button>
         </div>
     </div>
-    <!-- End Menu Bar -->
-     <!-- Content -->
-    <div class="container-content">
-        
-        <div class="content1">
-            <h1 class="h1-content1">Welcome to our Website</h1>
-            <h3 class="h3-content1">Server Terbaik dan Teraman Di Indonesia</h3>
-            <p class="p-content1">We provide the best and most secure servers in Indonesia for all your hosting needs. 
-            <br>buy our server today if you want to buy our server</p>
-            <br><p class="p-content1">Get started now and take your online presence to the next level!</p>
-        </div>    
-    </div>
-    <h2 class="h2-list1">Processor Ryzen 5 3400G 4C/8T 4.2GHz :</h2>
-    <div class="container-list">
-        
-        <div class="list">
-            <h3 class="list-h3">Budget Server</h3>
-            <ul class="ul-paul">
-                <li class="li-list">1 vCore Ryzen 5 3400g</li>
-                <li class="li-list">2 GB Ram DDR4</li>
-                <li class="li-list">4 GB SSD Storage</li>
-                <li class="li-list">100 GB Bandwidth</li>
-                <li class="li-list">3x Domain Update</li>
-                <li class="li-list">2x BackUp Servers</li>
-                <li class="li-list">1x Software Update</li>
 
-            </ul>
+    <script>
+        const btn = document.getElementById('btnSayang');
+        const judul = document.getElementById('judul');
 
-            <p class="p-list">Rp. 25.000,00</p>
-            <div class="tombol-beli1">
-                <a href="beli-server-budget.html" class="a-beli">Buy Now!!!</a>
-            </div>
-        </div>
-        <div class="list">
-            <h3 class="list-h3">Basic Server</h3>
-            <ul class="ul-paul">
-                <li class="li-list">2 vCore Ryzen 5 3400G</li>
-                <li class="li-list">4 GB Ram DDR4</li>
-                <li class="li-list">8 GB SSD Storage</li>
-                <li class="li-list">150 GB Bandwidth</li>
-                <li class="li-list">5x Domain Update</li>
-                <li class="li-list">3x BackUp Servers</li>
-                <li class="li-list">2x Software Update</li>
+        function lari() {
+            // 1. Hitung ukuran tombol agar tidak lari ke luar batas
+            const btnWidth = btn.offsetWidth;
+            const btnHeight = btn.offsetHeight;
+                
+            // 2. Ambil ukuran jendela browser yang terlihat (Viewport)
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+                
+            // 3. Batasi area lari agar tombol tetap terlihat utuh (dikurangi margin 50px)
+            const maxX = windowWidth - btnWidth - 50;
+            const maxY = windowHeight - btnHeight - 50;
+                
+            // 4. Pastikan angka random tidak menghasilkan nilai negatif (minimal 20px dari tepi)
+            const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+                
+            // 5. Terapkan posisi baru
+            btn.style.position = "fixed"; // Pakai fixed agar patokannya layar, bukan container
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+            btn.style.transform = 'none'; 
+            }       
 
-            </ul>
+            // Event listener tetap sama
+            btn.addEventListener('mouseover', lari);
+            btn.addEventListener('touchstart', (e) => { e.preventDefault(); lari(); });
 
-            <p class="p-list">Rp. 54.999,00</p>
-            <div class="tombol-beli1">
-                <a href="beli-server-basic.html" class="a-beli">Buy Now!!!</a>
-            </div>
-        </div>      
-            <div class="list">
-                <h3 class="list-h3">Standard Server</h3>
-            <ul class="ul-paul">
-                <li class="li-list">4 vCore Ryzen 5 3400G</li>
-                <li class="li-list">6 GB Ram DDR4</li>
-                <li class="li-list">12 GB SSD Storage</li>
-                <li class="li-list">150 GB Bandwidth</li>
-                <li class="li-list">7x Domain Update</li>
-                <li class="li-list">5x BackUp Servers</li>
-                <li class="li-list">3x Software Update</li>
-
-            </ul>
-
-            <p class="p-list">Rp. 74.999,00</p>
-            <div class="tombol-beli1">
-                <a href="beli-server-standard.html" class="a-beli">Buy Now!!!</a>
-            </div>
-        </div>
-    </div>
-        <h2 class="h2-list1">Processor Ryzen 5 5500GT 6C/12T 4.4GHz :</h2>
-    <div class="container-list2">
-        <div class="list2">
-            <h3 class="list-h3">Standar Server</h3>
-            <ul class="ul-paul">
-                <li class="li-list">2 vCore Ryzen 5 5500GT</li>
-                <li class="li-list">4 GB Ram DDR4</li>
-                <li class="li-list">8 GB SSD Storage</li>
-                <li class="li-list">100 GB Bandwidth</li>
-                <li class="li-list">3x Domain Update</li>
-                <li class="li-list">3x BackUp Servers</li>
-                <li class="li-list">2x Software Update</li>
-            </ul>
-
-            <p class="p-list">Rp. 40.000,00</p>
-            <div class="tombol-beli1">
-                <a href="beli-server-premium.html" class="a-beli">Buy Now!!!</a>
-            </div>
-        </div>
-        <div class="list2">
-            <h3 class="list-h3">Premium Server</h3>
-            <ul class="ul-paul">
-                <li class="li-list">4 vCore Ryzen 5 5500GT</li>
-                <li class="li-list">8 GB Ram DDR4</li>
-                <li class="li-list">12 GB SSD Storage</li>
-                <li class="li-list">125 GB Bandwidth</li>
-                <li class="li-list">5x Domain Update</li>
-                <li class="li-list">3x BackUp Servers</li>
-                <li class="li-list">2x Software Update</li>
-            </ul>
-
-            <p class="p-list">Rp. 72.998,00</p>
-            <div class="tombol-beli1">
-                <a href="beli-server-premium.html" class="a-beli">Buy Now!!!</a>
-            </div>
-        </div>
-    </div>  
-         <!-- End content -->
-    <script src="index.js"></script>
+            btn.addEventListener('click', function() {
+                judul.innerHTML = "Dalli chilloo, lopp yuuu cayangggg <br> ❤️❤️❤️";
+                btn.style.display = 'none';
+                document.body.style.background = '#ff4d6d';
+            });
+    </script>
 </body>
 </html>
